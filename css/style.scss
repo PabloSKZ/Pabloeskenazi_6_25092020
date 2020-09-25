@@ -1,3 +1,6 @@
+@import "./variables";
+@import "./select";
+
 body {
   margin: 0;
   font-family: "DM Sans", sans-serif;
@@ -9,5 +12,85 @@ a:visited,
 a:active,
 a:focus {
   text-decoration: none;
-  color: inherit;
+}
+
+img {
+  object-fit: cover;
+}
+
+.pp {
+  width: $pp-size;
+  height: $pp-size;
+  border-radius: 50%;
+}
+
+.btn {
+  color: $clr-white;
+  background: $clr-primary;
+  padding: 1.2rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+
+  &:hover,
+  &:focus {
+    color: $clr-black;
+    background: $clr-secondary-bg;
+  }
+}
+
+.tag {
+  color: $clr-primary;
+  border: 1px solid $clr-light-grey;
+  border-radius: 1rem;
+  padding: 0.2rem 0.5rem;
+
+  &:hover,
+  &:focus {
+    color: $clr-white;
+    background: $clr-primary;
+  }
+}
+
+.name {
+  font-size: 3.5rem;
+  color: $clr-secondary;
+  font-weight: 400;
+  margin: 1rem 0;
+}
+
+.location {
+  font-size: 1.3rem;
+  color: $clr-primary;
+}
+
+.copy-line {
+  color: $clr-black;
+}
+
+.price {
+  font-size: 0.9rem;
+  color: $clr-dark-grey;
+}
+
+.pic {
+  color: $clr-primary;
+  &__img {
+    width: 19rem;
+    height: 16rem;
+    border-radius: 5px;
+  }
+  &__text {
+    display: flex;
+    justify-content: flex-end;
+    width: 19rem;
+    font-size: 1.3rem;
+  }
+  &__title {
+    margin: 0.4rem;
+    margin-right: auto;
+  }
+  &__price,
+  &__likes {
+    margin: 0.4rem;
+  }
 }

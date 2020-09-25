@@ -1,3 +1,70 @@
+/* Colors */
+/* Sizes */
+/* The container must be positioned relative: */
+.custom-select {
+  position: relative;
+  width: 9rem;
+  margin-left: 1rem;
+}
+
+.custom-select select {
+  display: none;
+  /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: #901c1c;
+  border-radius: 4px;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 1rem;
+  right: 0.5rem;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: white transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent white transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,
+.select-selected {
+  color: white;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: #901c1c;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 body {
   margin: 0;
   font-family: "DM Sans", sans-serif;
@@ -9,5 +76,86 @@ a:visited,
 a:active,
 a:focus {
   text-decoration: none;
-  color: inherit;
+}
+
+img {
+  object-fit: cover;
+}
+
+.pp {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+
+.btn {
+  color: white;
+  background: #901c1c;
+  padding: 1.2rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.btn:hover, .btn:focus {
+  color: black;
+  background: #db8876;
+}
+
+.tag {
+  color: #901c1c;
+  border: 1px solid #cecece;
+  border-radius: 1rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.tag:hover, .tag:focus {
+  color: white;
+  background: #901c1c;
+}
+
+.name {
+  font-size: 3.5rem;
+  color: #d3573c;
+  font-weight: 400;
+  margin: 1rem 0;
+}
+
+.location {
+  font-size: 1.3rem;
+  color: #901c1c;
+}
+
+.copy-line {
+  color: black;
+}
+
+.price {
+  font-size: 0.9rem;
+  color: #525252;
+}
+
+.pic {
+  color: #901c1c;
+}
+
+.pic__img {
+  width: 19rem;
+  height: 16rem;
+  border-radius: 5px;
+}
+
+.pic__text {
+  display: flex;
+  justify-content: flex-end;
+  width: 19rem;
+  font-size: 1.3rem;
+}
+
+.pic__title {
+  margin: 0.4rem;
+  margin-right: auto;
+}
+
+.pic__price, .pic__likes {
+  margin: 0.4rem;
 }

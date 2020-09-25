@@ -15,7 +15,37 @@
     <title>Fisheye</title>
   </head>
   <body>
-    <img src="assets/logo.svg" alt="Fisheye Home page" />
-    <h1>Fisheye</h1>
+    <img src="assets/logo.svg" alt="Fisheye Home page" id="logo" />
+    <img
+      src="assets/Photographers_ID_Photos/EllieRoseWilkens.jpg"
+      alt="Fisheye Home page"
+      class="pp"
+    />
+    <a href="#" class="btn">Engagez-moi</a>
+    <a href="#" class="tag">#Portrait</a>
+    <h1 class="name">Kold Barkley</h1>
+    <p class="location">Auckland, New Zealand</p>
+    <p class="copy-line">Photographe et réalisateur <3</p>
+    <p class="price">400€/jour</p>
+    <div class="pic">
+      <img
+        src="assets/Nabeel/Portrait_AfternoonBreak.jpg"
+        alt="Portrait AfternoonBreak"
+        class="pic__img"
+      />
+      <div class="pic__text">
+        <p class="pic__title">Photo</p>
+        <p class="pic__price">70 €</p>
+        <p class="pic__likes">12 <i class="fas fa-heart"></i></p>
+      </div>
+    </div>
+    <div class="custom-select">
+      <select name="order" id="order">
+        <option value="popularity">Popularité</option>
+        <option value="date">Date</option>
+        <option value="title">Titre</option>
+      </select>
+    </div>
+    <script src="js/select.js"></script>
   </body>
 </html>
