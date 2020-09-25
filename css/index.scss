@@ -1,0 +1,48 @@
+@import "./variables";
+
+header {
+  display: flex;
+  width: 70%;
+  height: 10rem;
+  align-items: center;
+}
+
+#logo {
+  width: 30%;
+  object-fit: contain;
+  margin-left: 10%;
+}
+
+nav {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  flex-flow: wrap;
+}
+
+h1 {
+  color: $clr-primary;
+  font-weight: 400;
+  display: inline;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 3.5rem 10%;
+}
+
+.photographers {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.card {
+  width: 30%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.tags {
+  margin: 0.5rem;
+}
