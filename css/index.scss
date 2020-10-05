@@ -33,10 +33,11 @@ h1 {
 .photographers {
   display: flex;
   flex-flow: wrap;
+  margin-top: 5rem;
 }
 
 .card {
-  width: 30%;
+  width: 50%;
   display: flex;
   flex-flow: column;
   align-items: center;
