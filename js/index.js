@@ -1,10 +1,11 @@
 import data from "../data/data.js";
 
 function renderIndex(selectedTag = "") {
+  /* Initialize HTML */
   DOMphotographers.innerHTML = "";
   let photographersHTML = "";
 
-  console.log(selectedTag);
+  /* Render HTML tags */
   for (let i in data.photographers) {
     let tags = data.photographers[i].tags;
     let tagsHTML = "";
@@ -12,11 +13,12 @@ function renderIndex(selectedTag = "") {
     for (let j in tags) {
       tagsHTML += `
       <a href="#" class="tag">
-          #${tags[j].charAt(0).toUpperCase() + tags[j].slice(1)}
+          #${tags[j]}
       </a>
       `;
     }
 
+    /* Filtred Rendering */
     if (tags.includes(selectedTag) || selectedTag == "") {
       photographersHTML += `
       <div class="card">
@@ -37,35 +39,20 @@ function renderIndex(selectedTag = "") {
     }
   }
   DOMphotographers.innerHTML = photographersHTML;
+
+  /* Add Event on all tags */
+  for (let k in DOMtags) {
+    if (DOMtags[k] instanceof Element) {
+      DOMtags[k].addEventListener("click", (e) => {
+        renderIndex(
+          DOMtags[k].innerHTML.replace(/\s/g, "").replace(/#/, "").toLowerCase()
+        );
+      });
+    }
+  }
 }
 
 const DOMphotographers = document.getElementById("photographers");
-const DOMportrait = document.getElementById("portrait");
-const DOMart = document.getElementById("art");
-const DOMfashion = document.getElementById("fashion");
-const DOMarchitecture = document.getElementById("architecture");
-const DOMtravel = document.getElementById("travel");
-const DOMsport = document.getElementById("sport");
-const DOManimals = document.getElementById("animals");
-const DOMevents = document.getElementById("events");
-
-const filterTags = [
-  DOMportrait,
-  DOMart,
-  DOMfashion,
-  DOMarchitecture,
-  DOMtravel,
-  DOMsport,
-  DOManimals,
-  DOMevents,
-];
-
-let selectedTag = "";
-
-for (let i in filterTags) {
-  filterTags[i].addEventListener("click", (e) => {
-    renderIndex(filterTags[i].id);
-  });
-}
+const DOMtags = document.getElementsByClassName("tag");
 
 renderIndex();
