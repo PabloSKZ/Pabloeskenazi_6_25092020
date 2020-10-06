@@ -40,7 +40,7 @@ function renderIndex(selectedTag = "") {
   }
   DOMphotographers.innerHTML = photographersHTML;
 
-  /* Add Event on all tags */
+  /* Add click event on all tags */
   for (let k in DOMtags) {
     if (DOMtags[k] instanceof Element) {
       DOMtags[k].addEventListener("click", (e) => {

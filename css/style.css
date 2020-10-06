@@ -82,6 +82,25 @@ img {
   object-fit: cover;
 }
 
+.bold {
+  font-weight: bold;
+  display: inline;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  width: 70%;
+  height: 10rem;
+  align-items: center;
+}
+
+#logo {
+  width: 30%;
+  object-fit: contain;
+  margin-left: 10%;
+}
+
 .pp {
   width: 10rem;
   height: 10rem;
@@ -140,18 +159,19 @@ img {
 
 .pic {
   color: #901c1c;
+  margin: 1.5rem auto;
 }
 
 .pic__img {
-  width: 19rem;
-  height: 16rem;
-  border-radius: 5px;
+  width: 25rem;
+  height: 20rem;
+  border-radius: 0.5rem;
 }
 
 .pic__text {
   display: flex;
   justify-content: flex-end;
-  width: 19rem;
+  width: 25rem;
   font-size: 1.3rem;
 }
 

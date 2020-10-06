@@ -18,6 +18,25 @@ img {
   object-fit: cover;
 }
 
+.bold {
+  font-weight: bold;
+  display: inline;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  width: 70%;
+  height: 10rem;
+  align-items: center;
+}
+
+#logo {
+  width: 30%;
+  object-fit: contain;
+  margin-left: 10%;
+}
+
 .pp {
   width: $pp-size;
   height: $pp-size;
@@ -78,15 +97,17 @@ img {
 
 .pic {
   color: $clr-primary;
+  margin: 1.5rem auto;
+
   &__img {
-    width: 19rem;
-    height: 16rem;
-    border-radius: 5px;
+    width: $pic-width;
+    height: $pic-height;
+    border-radius: $pic-radius;
   }
   &__text {
     display: flex;
     justify-content: flex-end;
-    width: 19rem;
+    width: $pic-width;
     font-size: 1.3rem;
   }
   &__title {
