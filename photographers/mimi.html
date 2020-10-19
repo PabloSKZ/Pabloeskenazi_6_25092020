@@ -11,6 +11,10 @@
       rel="stylesheet"
       href="../lib/fontawesome-free-5.14.0-web/css/all.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/photographers.css" />
     <title>Fisheye</title>
@@ -44,15 +48,15 @@
         class="pp"
       />
     </div>
-    <div class="sort">
-      <p class="bold">Trier par</p>
-      <div class="custom-select">
-        <select name="order" id="order">
-          <option value="popularity">Popularité</option>
-          <option value="date">Date</option>
-          <option value="title">Titre</option>
-        </select>
-      </div>
+    <div class="dropdown">
+      <button>
+        Popularité <span class="material-icons"> keyboard_arrow_down </span>
+      </button>
+      <ul>
+        <li><a href="#">Popularité</a></li>
+        <li><a href="#">Date</a></li>
+        <li><a href="#">Titre</a></li>
+      </ul>
     </div>
     <div class="galery">
       <div class="pic">
@@ -128,57 +132,5 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="galery">
-      <div class="card">
-        <img
-          src="../assets/Mimi/Animals_Rainbow.jpg"
-          alt=""
-          class="card__img"
-        />
-        <div class="card__text">lalala</div>
-      </div>
-      <div class="card">
-        <img
-          src="../assets/Mimi/Animals_Rainbow.jpg"
-          alt=""
-          class="card__img"
-        />
-        <div class="card__text">lalala</div>
-      </div>
-      <div class="card">
-        <img
-          src="../assets/Mimi/Animals_Rainbow.jpg"
-          alt=""
-          class="card__img"
-        />
-        <div class="card__text">lalala</div>
-      </div>
-      <div class="card">
-        <img
-          src="../assets/Mimi/Animals_Rainbow.jpg"
-          alt=""
-          class="card__img"
-        />
-        <div class="card__text">lalala</div>
-      </div>
-      <div class="card">
-        <img
-          src="../assets/Mimi/Animals_Rainbow.jpg"
-          alt=""
-          class="card__img"
-        />
-        <div class="card__text">lalala</div>
-      </div>
-      <div class="card">
-        <img
-          src="../assets/Mimi/Animals_Rainbow.jpg"
-          alt=""
-          class="card__img"
-        />
-        <div class="card__text">lalala</div>
-      </div>
-    </div> -->
-    <script src="../js/select.js"></script>
   </body>
 </html>

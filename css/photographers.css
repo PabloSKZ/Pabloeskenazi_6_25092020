@@ -36,11 +36,41 @@
   width: 12rem;
 }
 
-.sort {
-  display: flex;
-  align-items: baseline;
+.dropdown {
   width: 80%;
   margin: 2rem auto 0 auto;
+  position: relative;
+}
+
+.dropdown button {
+  padding-right: 0.5rem;
+}
+
+.dropdown .material-icons {
+  margin-left: 0.5rem;
+}
+
+.dropdown ul {
+  position: absolute;
+  /*     top: 0; */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dropdown li {
+  color: white;
+  background: #901c1c;
+  padding: 1.2rem 1.5rem;
+  border-top: white 1px solid;
+}
+
+.dropdown li a,
+.dropdown li a:link,
+.dropdown li a:visited,
+.dropdown li a:active,
+.dropdown li a:focus {
+  color: white;
 }
 
 .galery {
@@ -48,7 +78,7 @@
   flex-flow: wrap;
   width: 80%;
   margin: auto;
-  margin-top: 1.5rem;
+  margin-top: 3rem;
 }
 
 /* .card {

@@ -36,11 +36,41 @@
   width: $pp-big-size;
 }
 
-.sort {
-  display: flex;
-  align-items: baseline;
+.dropdown {
   width: 80%;
   margin: 2rem auto 0 auto;
+  position: relative;
+
+  & button {
+    padding-right: 0.5rem;
+  }
+
+  & .material-icons {
+    margin-left: 0.5rem;
+  }
+
+  & ul {
+    position: absolute;
+    /*     top: 0; */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  & li {
+    color: $clr-white;
+    background: $clr-primary;
+    padding: 1.2rem 1.5rem;
+    border-top: white 1px solid;
+
+    & a,
+    a:link,
+    a:visited,
+    a:active,
+    a:focus {
+      color: $clr-white;
+    }
+  }
 }
 
 .galery {
@@ -48,7 +78,7 @@
   flex-flow: wrap;
   width: 80%;
   margin: auto;
-  margin-top: 1.5rem;
+  margin-top: 3rem;
 }
 
 /* .card {
