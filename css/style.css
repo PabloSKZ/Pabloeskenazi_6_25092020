@@ -217,3 +217,7 @@ button:focus {
 .pic__price, .pic__likes {
   margin: 0.4rem;
 }
+
+.hide {
+  display: none;
+}

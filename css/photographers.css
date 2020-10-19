@@ -44,15 +44,21 @@
 
 .dropdown button {
   padding-right: 0.5rem;
+  width: 8rem;
+}
+
+.dropdown button:hover, .dropdown button:focus {
+  color: white;
+  background: #901c1c;
 }
 
 .dropdown .material-icons {
-  margin-left: 0.5rem;
+  position: absolute;
+  left: 6rem;
 }
 
 .dropdown ul {
   position: absolute;
-  /*     top: 0; */
   margin: 0;
   padding: 0;
   list-style: none;
@@ -61,8 +67,8 @@
 .dropdown li {
   color: white;
   background: #901c1c;
-  padding: 1.2rem 1.5rem;
   border-top: white 1px solid;
+  width: 8rem;
 }
 
 .dropdown li a,
@@ -70,7 +76,9 @@
 .dropdown li a:visited,
 .dropdown li a:active,
 .dropdown li a:focus {
+  display: block;
   color: white;
+  padding: 1.2rem 1.5rem;
 }
 
 .galery {

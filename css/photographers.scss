@@ -43,15 +43,22 @@
 
   & button {
     padding-right: 0.5rem;
+    width: 8rem;
+
+    &:hover,
+    &:focus {
+      color: $clr-white;
+      background: $clr-primary;
+    }
   }
 
   & .material-icons {
-    margin-left: 0.5rem;
+    position: absolute;
+    left: 6rem;
   }
 
   & ul {
     position: absolute;
-    /*     top: 0; */
     margin: 0;
     padding: 0;
     list-style: none;
@@ -60,15 +67,17 @@
   & li {
     color: $clr-white;
     background: $clr-primary;
-    padding: 1.2rem 1.5rem;
     border-top: white 1px solid;
+    width: 8rem;
 
     & a,
     a:link,
     a:visited,
     a:active,
     a:focus {
+      display: block;
       color: $clr-white;
+      padding: 1.2rem 1.5rem;
     }
   }
 }

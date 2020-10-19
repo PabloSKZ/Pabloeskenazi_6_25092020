@@ -49,13 +49,16 @@
       />
     </div>
     <div class="dropdown">
-      <button>
-        Popularité <span class="material-icons"> keyboard_arrow_down </span>
+      <button id="dropdown-button">
+        <span id="dropdown-selected">Popularité</span>
+        <span id="dropdown-arrow" class="material-icons"
+          >keyboard_arrow_down</span
+        >
       </button>
-      <ul>
-        <li><a href="#">Popularité</a></li>
-        <li><a href="#">Date</a></li>
-        <li><a href="#">Titre</a></li>
+      <ul id="dropdown-list" class="hide">
+        <li id="dropdown-list-popularity"><a href="#">Popularité</a></li>
+        <li id="dropdown-list-date"><a href="#">Date</a></li>
+        <li id="dropdown-list-title"><a href="#">Titre</a></li>
       </ul>
     </div>
     <div class="galery">
@@ -132,5 +135,6 @@
         </div>
       </div>
     </div>
+    <script src="../js/dropdown.js"></script>
   </body>
 </html>
