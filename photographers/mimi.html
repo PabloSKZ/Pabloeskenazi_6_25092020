@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="../css/photographers.css" />
     <title>Fisheye</title>
   </head>
-  <body>
+  <body data-id="82">
     <header>
       <a href="../index.html" id="logo">
         <img src="../assets/logo.svg" alt="Fisheye Home page" />
@@ -28,10 +28,10 @@
     <div class="profile">
       <div class="profile__left">
         <div class="profile__left__text">
-          <h1 class="name">Kold Barkley</h1>
-          <p class="location">Auckland, New Zealand</p>
-          <p class="copy-line">Photographe et réalisateur <3</p>
-          <div class="tags">
+          <h1 id="name" class="name">Kold Barkley</h1>
+          <p id="location" class="location">Auckland, New Zealand</p>
+          <p id="copyline" class="copy-line">Photographe et réalisateur <3</p>
+          <div id="tags" class="tags">
             <a href="#" class="tag">#Portrait</a>
             <a href="#" class="tag">#Portrait</a>
             <a href="#" class="tag">#Portrait</a>
@@ -45,6 +45,7 @@
       <img
         src="../assets/Photographers_ID_Photos/EllieRoseWilkens.jpg"
         alt="Fisheye Home page"
+        id="pp"
         class="pp"
       />
     </div>
@@ -61,7 +62,7 @@
         <li id="dropdown-list-title"><a href="#">Titre</a></li>
       </ul>
     </div>
-    <div class="galery">
+    <div id="gallery" class="galery">
       <div class="pic">
         <img
           src="../assets/Nabeel/Portrait_AfternoonBreak.jpg"
@@ -136,5 +137,6 @@
       </div>
     </div>
     <script src="../js/dropdown.js"></script>
+    <script src="../js/photographers.js" type="module" data-id="243"></script>
   </body>
 </html>

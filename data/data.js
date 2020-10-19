@@ -401,7 +401,7 @@ export default {
     {
       id: 95234343,
       photographerId: 243,
-      image: "Animals_Rainbow.jpg.jpg",
+      image: "Animals_Rainbow.jpg",
       tags: ["animals"],
       likes: 59,
       date: "2019-07-02",
