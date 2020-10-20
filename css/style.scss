@@ -123,6 +123,14 @@ button {
   &__price,
   &__likes {
     margin: 0.4rem;
+
+    & a,
+    a:link,
+    a:visited,
+    a:active,
+    a:focus {
+      color: $clr-primary;
+    }
   }
 }
 

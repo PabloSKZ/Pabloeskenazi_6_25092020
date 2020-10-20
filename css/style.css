@@ -218,6 +218,18 @@ button:focus {
   margin: 0.4rem;
 }
 
+.pic__price a,
+.pic__price a:link,
+.pic__price a:visited,
+.pic__price a:active,
+.pic__price a:focus, .pic__likes a,
+.pic__likes a:link,
+.pic__likes a:visited,
+.pic__likes a:active,
+.pic__likes a:focus {
+  color: #901c1c;
+}
+
 .hide {
   display: none;
 }

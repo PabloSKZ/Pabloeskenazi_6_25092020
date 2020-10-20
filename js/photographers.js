@@ -7,23 +7,24 @@ function renderPictures(picturesSorted) {
     if (picturesSorted[j].image != undefined) {
       pictureName = splitFileName(picturesSorted[j].image);
       galleryHTML += `
-    <div class="pic">
-    <img
-      src="../../assets/${photographer.name.split(" ")[0]}/${
+      <div class="pic">
+        <img
+          src="../../assets/${photographer.name.split(" ")[0]}/${
         picturesSorted[j].image
       }"
-      alt="Portrait AfternoonBreak"
-      class="pic__img"
-    />
-    <div class="pic__text">
-      <p class="pic__title">${pictureName}</p>
-      <p class="pic__price">${picturesSorted[j].price} €</p>
-      <p class="pic__likes">${
-        picturesSorted[j].likes
-      } <i class="fas fa-heart"></i></p>
-    </div>
-  </div>
-    `;
+          alt="Portrait AfternoonBreak"
+          class="pic__img"
+        />
+        <div class="pic__text">
+          <p class="pic__title">${pictureName}</p>
+          <p class="pic__price">${picturesSorted[j].price} €</p>
+          <p class="pic__likes"><span>${picturesSorted[j].likes}</span> 
+          <a href="#" id="${
+            picturesSorted[j].id
+          }" class="like-button"><i class="fas fa-heart"></i></a></p>
+        </div>
+      </div>
+      `;
     }
   }
   $gallery.innerHTML = galleryHTML;
@@ -121,6 +122,8 @@ const $dropdownPopularity = document.getElementById("dropdown-list-popularity");
 const $dropdownDate = document.getElementById("dropdown-list-date");
 const $dropdownTitle = document.getElementById("dropdown-list-title");
 
+const $likeButtons = document.getElementsByClassName("like-button");
+
 /* Fetch Data */
 const id = document.getElementsByTagName("body")[0].getAttribute("data-id");
 const photographer = data.photographers.find((x) => x.id == id);
@@ -177,3 +180,16 @@ for (let i in photographer.tags) {
 $tags.innerHTML = tagsHTML;
 
 renderPictures(picturesSorted);
+
+/* Likes Incrementation by clicking on like button */
+// TODO: stop to one incrementation
+Array.from($likeButtons).forEach((el) => {
+  el.addEventListener("click", (e) => {
+    e.preventDefault();
+    let imageId = el.id;
+    data.media.find((x) => x.id == imageId).likes++;
+    el.previousElementSibling.innerHTML = data.media.find(
+      (x) => x.id == imageId
+    ).likes;
+  });
+});
