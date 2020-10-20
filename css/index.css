@@ -31,6 +31,12 @@ h1 {
   margin-bottom: 4rem;
 }
 
+.card .photographer-link {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
 .tags {
   margin: 0.5rem;
 }

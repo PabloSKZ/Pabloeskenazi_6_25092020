@@ -18,7 +18,7 @@ for (let j in pictures) {
     galleryHTML += `
     <div class="pic">
     <img
-      src="../assets/${photographer.name.split(" ")[0]}/${pictures[j].image}"
+      src="../../assets/${photographer.name.split(" ")[0]}/${pictures[j].image}"
       alt="Portrait AfternoonBreak"
       class="pic__img"
     />
@@ -48,7 +48,7 @@ $copyline.innerHTML = photographer.tagline;
 $tags.innerHTML = tagsHTML;
 $pp.setAttribute(
   "src",
-  `../assets/Photographers_ID_Photos/${photographer.portrait}`
+  `../../assets/Photographers_ID_Photos/${photographer.portrait}`
 );
 $gallery.innerHTML = galleryHTML;
 

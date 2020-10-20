@@ -29,6 +29,12 @@ h1 {
   flex-flow: column;
   align-items: center;
   margin-bottom: 4rem;
+
+  & .photographer-link {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
 }
 
 .tags {

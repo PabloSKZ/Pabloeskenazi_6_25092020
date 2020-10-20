@@ -20,21 +20,23 @@ function renderIndex(selectedTag = "") {
 
     /* Filtred Rendering */
     if (tags.includes(selectedTag) || selectedTag == "") {
-      photographersHTML += `
+      photographersHTML += ` 
       <div class="card">
-        <img
-          src="assets/Photographers_ID_Photos/${data.photographers[i].portrait}"
-          alt="Fisheye Home page"
-          class="pp"
-        />
-        <h2 class="name">${data.photographers[i].name}</h2>
+        <a href="photographers/${data.photographers[i].id}" class="photographer-link">
+          <img
+            src="assets/Photographers_ID_Photos/${data.photographers[i].portrait}"
+            alt="Fisheye Home page"
+            class="pp"
+          />
+          <h2 class="name">${data.photographers[i].name}</h2>
+        </a>
         <p class="location">${data.photographers[i].city}, ${data.photographers[i].country}</p>
         <p class="copy-line">${data.photographers[i].tagline}</p>
         <p class="price">${data.photographers[i].price}€/jour</p>
-        <div class="tags" id="tags">
-          ${tagsHTML}
-        </div>
+      <div class="tags" id="tags">
+        ${tagsHTML}
       </div>
+    </div>
       `;
     }
   }
