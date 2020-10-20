@@ -104,7 +104,8 @@ button {
   color: $clr-primary;
   margin: 1.5rem auto;
 
-  &__img {
+  &__img,
+  &__video {
     width: $pic-width;
     height: $pic-height;
     border-radius: $pic-radius;
