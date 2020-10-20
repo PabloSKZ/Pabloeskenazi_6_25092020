@@ -1,12 +1,8 @@
 import data from "../data/data.js";
 
-console.log(data.photographers);
-
 const id = document.getElementsByTagName("body")[0].getAttribute("data-id");
 const photographer = data.photographers.find((x) => x.id == id);
 const pictures = data.media.filter((x) => x.photographerId == id);
-
-console.log(pictures);
 
 let tagsHTML = "";
 let galleryHTML = "";
@@ -18,12 +14,7 @@ for (let i in photographer.tags) {
 
 for (let j in pictures) {
   if (pictures[j].image != undefined) {
-    pictureName = pictures[j].image.split("_");
-    pictureName.shift();
-    pictureName.join(" ");
-    pictureName = pictureName.toString().split(".");
-    pictureName.pop();
-    pictureName = pictureName.join(" ").toString();
+    pictureName = splitFileName(pictures[j].image);
     galleryHTML += `
     <div class="pic">
     <img
@@ -60,3 +51,17 @@ $pp.setAttribute(
   `../assets/Photographers_ID_Photos/${photographer.portrait}`
 );
 $gallery.innerHTML = galleryHTML;
+
+function splitFileName(pictureName) {
+  pictureName = pictureName.split("_");
+  console.log(pictureName);
+  pictureName.shift();
+  console.log(pictureName);
+  pictureName = pictureName.join(" ");
+  console.log(pictureName);
+  pictureName = pictureName.toString().split(".");
+  console.log(pictureName);
+  pictureName.pop();
+  console.log(pictureName);
+  return pictureName.join(" ").toString();
+}
