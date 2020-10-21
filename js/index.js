@@ -72,7 +72,7 @@ Array.from($tags).forEach((el) => {
     e.preventDefault();
     if (el.classList.contains("active-tag")) {
       el.classList.remove("active-tag");
-      filterIndex(selectedTag);
+      filterIndex("");
     } else {
       Array.from($tags).forEach((elem) => {
         elem.classList.remove("active-tag");
