@@ -1,10 +1,13 @@
 import data from "../data/data.js";
 
-function renderPictures(picturesSorted) {
+function renderPictures(picturesSorted, selectedTag = "") {
   picturesSorted = sortPictures(pictures, sortValue);
   galleryHTML = "";
   for (let j in picturesSorted) {
-    if (picturesSorted[j].image != undefined) {
+    if (
+      picturesSorted[j].image != undefined &&
+      (picturesSorted[j].tags.includes(selectedTag) || selectedTag == "")
+    ) {
       pictureName = splitFileName(picturesSorted[j].image);
       galleryHTML += `
       <div class="pic">
@@ -134,6 +137,7 @@ const $dropdownDate = document.getElementById("dropdown-list-date");
 const $dropdownTitle = document.getElementById("dropdown-list-title");
 
 const $likeButtons = document.getElementsByClassName("like-button");
+const $tagCollection = document.getElementsByClassName("tag");
 
 /* Fetch Data */
 const id = document.getElementsByTagName("body")[0].getAttribute("data-id");
@@ -146,6 +150,7 @@ let galleryHTML = "";
 let pictureName = "";
 let sortValue = "popularity";
 let picturesSorted = sortPictures(pictures, sortValue);
+let selectedTag = "";
 
 /* Event Listeners */
 $dropdownButton.addEventListener("click", (e) => {
@@ -195,7 +200,7 @@ renderTotalLikes(pictures);
 
 renderPictures(picturesSorted);
 
-/* Likes Incrementation by clicking on like button */
+/* Event Listeners on like buttons */
 Array.from($likeButtons).forEach((el) => {
   let image = {
     id: el.id,
@@ -210,6 +215,21 @@ Array.from($likeButtons).forEach((el) => {
         (x) => x.id == image.id
       ).likes;
       renderTotalLikes(pictures);
+    }
+  });
+});
+
+/* Event Listeners on tags */
+Array.from($tagCollection).forEach((el) => {
+  el.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (el.classList.contains("active-tag")) {
+      el.classList.remove("active-tag");
+      renderPictures(picturesSorted, "");
+    } else {
+      el.classList.add("active-tag");
+      selectedTag = el.innerHTML.split("#")[1].toString();
+      renderPictures(picturesSorted, selectedTag);
     }
   });
 });

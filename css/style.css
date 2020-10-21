@@ -162,7 +162,12 @@ button:focus {
   margin: 0.2rem 0.3rem;
 }
 
-.tag:hover, .tag:focus {
+.tag:hover {
+  color: white;
+  background: #901c1c;
+}
+
+.active-tag {
   color: white;
   background: #901c1c;
 }
