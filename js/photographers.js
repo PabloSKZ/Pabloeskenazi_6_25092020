@@ -106,6 +106,15 @@ function renderDropdown(sortValue) {
   }
 }
 
+function renderTotalLikes(pictures) {
+  let total = 0;
+  for (let l in pictures) {
+    total += pictures[l].likes;
+  }
+  $totalLikes.innerHTML = total;
+  return total;
+}
+
 /* DOM Variables */
 const $name = document.getElementById("name");
 const $location = document.getElementById("location");
@@ -113,6 +122,8 @@ const $copyline = document.getElementById("copyline");
 const $tags = document.getElementById("tags");
 const $pp = document.getElementById("pp");
 const $gallery = document.getElementById("gallery");
+const $price = document.getElementById("price");
+const $totalLikes = document.getElementById("total-likes");
 
 const $dropdownButton = document.getElementById("dropdown-button");
 const $dropdownSelected = document.getElementById("dropdown-selected");
@@ -179,6 +190,9 @@ for (let i in photographer.tags) {
 }
 $tags.innerHTML = tagsHTML;
 
+$price.innerHTML = photographer.price;
+renderTotalLikes(pictures);
+
 renderPictures(picturesSorted);
 
 /* Likes Incrementation by clicking on like button */
@@ -195,6 +209,7 @@ Array.from($likeButtons).forEach((el) => {
       el.previousElementSibling.innerHTML = data.media.find(
         (x) => x.id == image.id
       ).likes;
+      renderTotalLikes(pictures);
     }
   });
 });
