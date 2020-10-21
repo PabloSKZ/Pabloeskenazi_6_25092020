@@ -163,7 +163,7 @@ $dropdownPopularity.addEventListener("click", (e) => {
   sortValue = "popularity";
   $dropdownSelected.innerHTML = "Popularité";
   toggleDropdown();
-  renderPictures(picturesSorted);
+  renderPictures(picturesSorted, selectedTag);
 });
 
 $dropdownDate.addEventListener("click", (e) => {
@@ -171,7 +171,7 @@ $dropdownDate.addEventListener("click", (e) => {
   sortValue = "date";
   $dropdownSelected.innerHTML = "Date";
   toggleDropdown();
-  renderPictures(picturesSorted);
+  renderPictures(picturesSorted, selectedTag);
 });
 
 $dropdownTitle.addEventListener("click", (e) => {
@@ -179,7 +179,7 @@ $dropdownTitle.addEventListener("click", (e) => {
   sortValue = "title";
   $dropdownSelected.innerHTML = "Titre";
   toggleDropdown();
-  renderPictures(picturesSorted);
+  renderPictures(picturesSorted, selectedTag);
 });
 
 /* Render Photographer Profile */
@@ -198,7 +198,7 @@ $tags.innerHTML = tagsHTML;
 $price.innerHTML = photographer.price;
 renderTotalLikes(pictures);
 
-renderPictures(picturesSorted);
+renderPictures(picturesSorted, selectedTag);
 
 /* Event Listeners on like buttons */
 Array.from($likeButtons).forEach((el) => {
@@ -227,6 +227,9 @@ Array.from($tagCollection).forEach((el) => {
       el.classList.remove("active-tag");
       renderPictures(picturesSorted, "");
     } else {
+      Array.from($tagCollection).forEach((elem) => {
+        elem.classList.remove("active-tag");
+      });
       el.classList.add("active-tag");
       selectedTag = el.innerHTML.split("#")[1].toString();
       renderPictures(picturesSorted, selectedTag);
