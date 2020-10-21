@@ -182,14 +182,19 @@ $tags.innerHTML = tagsHTML;
 renderPictures(picturesSorted);
 
 /* Likes Incrementation by clicking on like button */
-// TODO: stop to one incrementation
 Array.from($likeButtons).forEach((el) => {
+  let image = {
+    id: el.id,
+    liked: false,
+  };
   el.addEventListener("click", (e) => {
     e.preventDefault();
-    let imageId = el.id;
-    data.media.find((x) => x.id == imageId).likes++;
-    el.previousElementSibling.innerHTML = data.media.find(
-      (x) => x.id == imageId
-    ).likes;
+    if (!image.liked) {
+      data.media.find((x) => x.id == image.id).likes++;
+      image.liked = true;
+      el.previousElementSibling.innerHTML = data.media.find(
+        (x) => x.id == image.id
+      ).likes;
+    }
   });
 });
