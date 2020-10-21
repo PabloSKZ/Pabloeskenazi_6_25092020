@@ -40,11 +40,11 @@ function renderIndex() {
 }
 
 function filterIndex(selectedTag) {
-  console.log("ok");
   let filtredPhotographers = data.photographers.filter((x) =>
     x.tags.includes(selectedTag)
   );
   Array.from($cards).forEach((el) => {
+    el.classList.add("hide");
     if (filtredPhotographers.length == 0) {
       el.classList.remove("hide");
     } else {
@@ -72,7 +72,7 @@ Array.from($tags).forEach((el) => {
     e.preventDefault();
     if (el.classList.contains("active-tag")) {
       el.classList.remove("active-tag");
-      renderIndex("");
+      filterIndex(selectedTag);
     } else {
       Array.from($tags).forEach((elem) => {
         elem.classList.remove("active-tag");
@@ -83,7 +83,7 @@ Array.from($tags).forEach((el) => {
         .replace(/#/, "")
         .toLowerCase()
         .toString();
-      renderIndex(selectedTag);
+      filterIndex(selectedTag);
     }
   });
 });
