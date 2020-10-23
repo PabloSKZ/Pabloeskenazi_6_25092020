@@ -124,9 +124,13 @@ const $location = document.getElementById("location");
 const $copyline = document.getElementById("copyline");
 const $tags = document.getElementById("tags");
 const $pp = document.getElementById("pp");
+const $contact = document.getElementById("contact");
 const $gallery = document.getElementById("gallery");
 const $price = document.getElementById("price");
 const $totalLikes = document.getElementById("total-likes");
+const $modalBg = document.getElementById("modal-bg");
+const $closeModal = document.getElementById("close-modal");
+const $contactName = document.getElementById("contact-name");
 
 const $dropdownButton = document.getElementById("dropdown-button");
 const $dropdownSelected = document.getElementById("dropdown-selected");
@@ -139,8 +143,17 @@ const $dropdownTitle = document.getElementById("dropdown-list-title");
 const $likeButtons = document.getElementsByClassName("like-button");
 const $tagCollection = document.getElementsByClassName("tag");
 
+/* Get id from url params */
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const urlEntries = urlParams.entries();
+for (const entry of urlEntries) {
+  if (entry[0] == "id") {
+    var id = entry[1];
+  }
+}
+
 /* Fetch Data */
-const id = document.getElementsByTagName("body")[0].getAttribute("data-id");
 const photographer = data.photographers.find((x) => x.id == id);
 const pictures = data.media.filter((x) => x.photographerId == id);
 
@@ -180,6 +193,17 @@ $dropdownTitle.addEventListener("click", (e) => {
   $dropdownSelected.innerHTML = "Titre";
   toggleDropdown();
   renderPictures(picturesSorted, selectedTag);
+});
+
+$contact.addEventListener("click", (e) => {
+  e.preventDefault();
+  $contactName.innerHTML = photographer.name;
+  $modalBg.classList.remove("hide");
+});
+
+$closeModal.addEventListener("click", (e) => {
+  e.preventDefault();
+  $modalBg.classList.add("hide");
 });
 
 /* Render Photographer Profile */

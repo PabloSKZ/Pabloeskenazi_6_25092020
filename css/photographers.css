@@ -101,3 +101,85 @@
   background: #db8876;
   font-size: 1.8rem;
 }
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.modal {
+  position: relative;
+  background: #db8876;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.modal__close {
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+form .btn {
+  margin: 1rem 0 1rem 0;
+  width: 6rem;
+  text-align: center;
+}
+
+form .btn:hover {
+  background: #d3573c;
+}
+
+input {
+  height: 2.5rem;
+  width: 100%;
+  border: none;
+  border-radius: 0.3rem;
+  font-family: inherit;
+  font-size: 1.6rem;
+  padding: 0.2rem 0.5rem;
+  box-sizing: border-box;
+}
+
+input[type="textarea"] {
+  height: 7rem;
+  padding: 0.2rem 0.5rem;
+  resize: none;
+  overflow: auto;
+}
+
+input:focus, input:active {
+  border: none;
+  outline: none;
+}
+
+label {
+  font-size: 1.5rem;
+  color: #353535;
+  margin-top: 0.2rem;
+}
+
+.contact-name {
+  margin-left: 0.2rem;
+}

@@ -18,7 +18,7 @@ function renderIndex() {
     }
     photographersHTML += ` 
     <div class="card hide" id="${data.photographers[i].id}"">
-      <a href="photographers/${data.photographers[i].id}" class="photographer-link">
+      <a href="photographers/?id=${data.photographers[i].id}" class="photographer-link">
         <img
           src="assets/Photographers_ID_Photos/${data.photographers[i].portrait}"
           alt="Fisheye Home page"

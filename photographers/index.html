@@ -9,20 +9,20 @@
     />
     <link
       rel="stylesheet"
-      href="../../lib/fontawesome-free-5.14.0-web/css/all.min.css"
+      href="../lib/fontawesome-free-5.14.0-web/css/all.min.css"
     />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../css/style.css" />
-    <link rel="stylesheet" href="../../css/photographers.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/photographers.css" />
     <title>Fisheye</title>
   </head>
-  <body data-id="82">
+  <body>
     <header>
-      <a href="../../index.html" id="logo">
-        <img src="../../assets/logo.svg" alt="Fisheye Home page" />
+      <a href="../index.html" id="logo">
+        <img src="../assets/logo.svg" alt="Fisheye Home page" />
       </a>
     </header>
     <div class="profile">
@@ -33,11 +33,33 @@
           <p id="copyline" class="copy-line"></p>
           <div id="tags" class="tags"></div>
         </div>
-        <a href="#" class="btn">Contactez-moi</a>
+        <a href="#" id="contact" class="btn">Contactez-moi</a>
       </div>
 
       <img src="" alt="Fisheye Home page" id="pp" class="pp" />
     </div>
+
+    <div id="modal-bg" class="modal-bg hide">
+      <div class="modal">
+        <h1>
+          Contactez-moi <br />
+          <span id="contact-name" class="contact-name"></span>
+        </h1>
+        <span id="close-modal" class="modal__close">x</span>
+        <form>
+          <label for="fname">Prénom</label>
+          <input type="text" name="fname" />
+          <label for="lname">Nom</label>
+          <input type="text" name="lname" />
+          <label for="email">Email</label>
+          <input type="email" name="email" />
+          <label for="message">Votre message</label>
+          <input type="textarea" name="message" wrap="off" />
+          <button type="submit" class="btn">Envoyer</button>
+        </form>
+      </div>
+    </div>
+
     <div id="dropdown" class="dropdown">
       <button id="dropdown-button">
         <span id="dropdown-selected">Popularité</span>
@@ -60,6 +82,6 @@
       ></span>
       <span><span id="price">300</span> € / jours</span>
     </div>
-    <script src="../../js/photographers.js" type="module"></script>
+    <script src="../js/photographers.js" type="module"></script>
   </body>
 </html>
