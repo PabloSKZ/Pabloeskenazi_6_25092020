@@ -17,6 +17,7 @@ function renderPictures(picturesSorted, selectedTag = "") {
       }"
           alt="Portrait AfternoonBreak"
           class="pic__img"
+          id="p${picturesSorted[j].id}"
         />
         <div class="pic__text">
           <p class="pic__title">${pictureName}</p>
@@ -31,6 +32,47 @@ function renderPictures(picturesSorted, selectedTag = "") {
     }
   }
   $gallery.innerHTML = galleryHTML;
+
+  /* Lightbox Event Listener */
+  Array.from($pictureCollection).forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      lightbox(picturesSorted, selectedTag, el.id);
+    });
+  });
+}
+
+function lightbox(picturesSorted, selectedTag = "", clickedPicture) {
+  clickedPicture = clickedPicture.substring(1);
+  let pictureToShow = data.media.find((x) => x.id == clickedPicture);
+  $lightboxPicture.setAttribute(
+    "src",
+    `../assets/${photographer.name.split(" ")[0]}/${pictureToShow.image}`
+  );
+  $lightboxPicture.setAttribute("id", `${pictureToShow.id}`);
+  $lightboxBg.classList.remove("hide");
+  console.log(picturesSorted, selectedTag, clickedPicture);
+}
+
+function lightboxNext(picturesSorted, selectedTag = "") {
+  let nextPictureIndex =
+    picturesSorted.indexOf(
+      picturesSorted.find((x) => x.id == $lightboxPicture.id)
+    ) + 1;
+  if (picturesSorted[nextPictureIndex].image != undefined) {
+    lightbox(
+      picturesSorted,
+      selectedTag,
+      `p${picturesSorted[nextPictureIndex].id}`
+    );
+  } else {
+    nextPictureIndex++;
+    lightbox(
+      picturesSorted,
+      selectedTag,
+      `p${picturesSorted[nextPictureIndex].id}`
+    );
+  }
 }
 
 function sortPictures(pictures, sortValue) {
@@ -128,9 +170,15 @@ const $contact = document.getElementById("contact");
 const $gallery = document.getElementById("gallery");
 const $price = document.getElementById("price");
 const $totalLikes = document.getElementById("total-likes");
+
 const $modalBg = document.getElementById("modal-bg");
 const $closeModal = document.getElementById("close-modal");
 const $contactName = document.getElementById("contact-name");
+
+const $lightboxBg = document.getElementById("lightbox-bg");
+const $closeLightbox = document.getElementById("close-lightbox");
+const $lightboxPicture = document.getElementById("lightbox-picture");
+const $lightboxNext = document.getElementById("lightbox-next");
 
 const $dropdownButton = document.getElementById("dropdown-button");
 const $dropdownSelected = document.getElementById("dropdown-selected");
@@ -142,6 +190,7 @@ const $dropdownTitle = document.getElementById("dropdown-list-title");
 
 const $likeButtons = document.getElementsByClassName("like-button");
 const $tagCollection = document.getElementsByClassName("tag");
+const $pictureCollection = document.getElementsByClassName("pic__img");
 
 /* Get id from url params */
 const queryString = window.location.search;
@@ -206,13 +255,23 @@ $closeModal.addEventListener("click", (e) => {
   $modalBg.classList.add("hide");
 });
 
+$closeLightbox.addEventListener("click", (e) => {
+  e.preventDefault();
+  $lightboxBg.classList.add("hide");
+});
+
+$lightboxNext.addEventListener("click", (e) => {
+  e.preventDefault();
+  lightboxNext(picturesSorted);
+});
+
 /* Render Photographer Profile */
 $name.innerHTML = photographer.name;
 $location.innerHTML = `${photographer.city}, ${photographer.country}`;
 $copyline.innerHTML = photographer.tagline;
 $pp.setAttribute(
   "src",
-  `../../assets/Photographers_ID_Photos/${photographer.portrait}`
+  `../assets/Photographers_ID_Photos/${photographer.portrait}`
 );
 for (let i in photographer.tags) {
   tagsHTML += `<a href="#" class="tag">#${photographer.tags[i]}</a>`;

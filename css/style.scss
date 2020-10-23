@@ -113,6 +113,7 @@ button {
     width: $pic-width;
     height: $pic-height;
     border-radius: $pic-radius;
+    cursor: pointer;
   }
   &__text {
     display: flex;
