@@ -103,7 +103,8 @@
   font-size: 1.8rem;
 }
 
-.modal-bg {
+.modal-bg,
+.lightbox-bg {
   position: fixed;
   top: 0;
   left: 0;
@@ -184,4 +185,29 @@ label {
 
 .contact-name {
   margin-left: 0.2rem;
+}
+
+.lightbox {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  & .material-icons,
+  .close-lightbox {
+    font-size: 5rem;
+    color: $clr-primary;
+    cursor: pointer;
+  }
+
+  & .close-lightbox {
+    margin-top: -50%;
+    margin-left: -4rem;
+  }
+
+  & img {
+    max-width: 100%;
+    max-height: 50vh;
+  }
 }
