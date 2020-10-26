@@ -199,6 +199,7 @@ button:focus {
 .pic {
   color: #901c1c;
   margin: 1.5rem auto;
+  position: relative;
 }
 
 .pic__img, .pic__video {
@@ -234,6 +235,17 @@ button:focus {
 .pic__likes a:active,
 .pic__likes a:focus {
   color: #901c1c;
+}
+
+.play-icon .material-icons {
+  font-size: 10rem;
+  position: absolute;
+  z-index: 10;
+  top: 5rem;
+  left: 7.5rem;
+  pointer-events: none;
+  color: white;
+  opacity: 0.7;
 }
 
 .hide {

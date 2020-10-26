@@ -45,6 +45,11 @@ function renderPictures(picturesSorted, selectedTag = "") {
           id="p${picturesSorted[j].id}"
         >
         </video>
+        <div class="play-icon">
+          <span class="material-icons">
+            play_arrow
+          </span>
+        </div>
         <div class="pic__text">
           <p class="pic__title">${pictureName}</p>
           <p class="pic__price">${picturesSorted[j].price} €</p>

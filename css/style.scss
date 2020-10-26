@@ -107,6 +107,7 @@ button {
 .pic {
   color: $clr-primary;
   margin: 1.5rem auto;
+  position: relative;
 
   &__img,
   &__video {
@@ -137,6 +138,17 @@ button {
       color: $clr-primary;
     }
   }
+}
+
+.play-icon .material-icons {
+  font-size: 10rem;
+  position: absolute;
+  z-index: 10;
+  top: 5rem;
+  left: 7.5rem;
+  pointer-events: none;
+  color: $clr-white;
+  opacity: 0.7;
 }
 
 .hide {
