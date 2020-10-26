@@ -68,7 +68,6 @@ function lightbox(picturesSorted, selectedTag = "", clickedPicture) {
 
 function lightboxNext(picturesSorted, selectedTag = "") {
   let picturesFiltered = filterPictures(picturesSorted, selectedTag);
-  console.log(picturesFiltered);
   let nextPictureIndex =
     picturesFiltered.indexOf(
       picturesFiltered.find((x) => x.id == $lightboxPicture.id)
@@ -85,6 +84,29 @@ function lightboxNext(picturesSorted, selectedTag = "") {
       picturesSorted,
       selectedTag,
       `p${picturesSorted[nextPictureIndex].id}`
+    );
+  }
+}
+
+function lightboxPrevious(picturesSorted, selectedTag = "") {
+  console.log("ok");
+  let picturesFiltered = filterPictures(picturesSorted, selectedTag);
+  let previousPictureIndex =
+    picturesFiltered.indexOf(
+      picturesFiltered.find((x) => x.id == $lightboxPicture.id)
+    ) - 1;
+  if (picturesFiltered[previousPictureIndex].image != undefined) {
+    lightbox(
+      picturesFiltered,
+      selectedTag,
+      `p${picturesFiltered[previousPictureIndex].id}`
+    );
+  } else {
+    previousPictureIndex--;
+    lightbox(
+      picturesSorted,
+      selectedTag,
+      `p${picturesSorted[previousPictureIndex].id}`
     );
   }
 }
@@ -193,6 +215,7 @@ const $lightboxBg = document.getElementById("lightbox-bg");
 const $closeLightbox = document.getElementById("close-lightbox");
 const $lightboxPicture = document.getElementById("lightbox-picture");
 const $lightboxNext = document.getElementById("lightbox-next");
+const $lightboxPrevious = document.getElementById("lightbox-previous");
 
 const $dropdownButton = document.getElementById("dropdown-button");
 const $dropdownSelected = document.getElementById("dropdown-selected");
@@ -277,6 +300,11 @@ $closeLightbox.addEventListener("click", (e) => {
 $lightboxNext.addEventListener("click", (e) => {
   e.preventDefault();
   lightboxNext(picturesSorted, selectedTag);
+});
+
+$lightboxPrevious.addEventListener("click", (e) => {
+  e.preventDefault();
+  lightboxPrevious(picturesSorted, selectedTag);
 });
 
 /* Render Photographer Profile */
