@@ -48,14 +48,18 @@
         <span id="close-modal" class="modal__close">x</span>
         <form>
           <label for="fname">Prénom</label>
-          <input type="text" name="fname" />
+          <input type="text" name="fname" id="fname-input" />
+          <span id="fname-error" class="form-errors"></span>
           <label for="lname">Nom</label>
-          <input type="text" name="lname" />
+          <input type="text" name="lname" id="lname-input" />
+          <span id="lname-error" class="form-errors"></span>
           <label for="email">Email</label>
-          <input type="email" name="email" />
+          <input type="email" name="email" id="email-input" />
+          <span id="email-error" class="form-errors"></span>
           <label for="message">Votre message</label>
-          <input type="textarea" name="message" wrap="off" />
-          <button type="submit" class="btn">Envoyer</button>
+          <input type="textarea" name="message" wrap="off" id="message-input" />
+          <span id="message-error" class="form-errors"></span>
+          <button id="submit" type="submit" class="btn">Envoyer</button>
         </form>
       </div>
     </div>

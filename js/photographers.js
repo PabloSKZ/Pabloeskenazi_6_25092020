@@ -210,6 +210,16 @@ const $modalBg = document.getElementById("modal-bg");
 const $closeModal = document.getElementById("close-modal");
 const $contactName = document.getElementById("contact-name");
 
+const $fnameInput = document.getElementById("fname-input");
+const $lnameInput = document.getElementById("lname-input");
+const $emailInput = document.getElementById("email-input");
+const $messageInput = document.getElementById("message-input");
+const $fnameError = document.getElementById("fname-error");
+const $lnameError = document.getElementById("lname-error");
+const $emailError = document.getElementById("email-error");
+const $messageError = document.getElementById("message-error");
+const $submit = document.getElementById("submit");
+
 const $lightboxBg = document.getElementById("lightbox-bg");
 const $closeLightbox = document.getElementById("close-lightbox");
 const $lightboxPicture = document.getElementById("lightbox-picture");
@@ -291,6 +301,11 @@ $closeModal.addEventListener("click", (e) => {
   $modalBg.classList.add("hide");
 });
 
+$submit.addEventListener("click", (e) => {
+  e.preventDefault();
+  validateForm();
+});
+
 $closeLightbox.addEventListener("click", (e) => {
   e.preventDefault();
   $lightboxBg.classList.add("hide");
@@ -361,3 +376,33 @@ Array.from($tagCollection).forEach((el) => {
     }
   });
 });
+
+function validateForm() {
+  // Error field init
+  $fnameError.innerHTML = "";
+  $lnameError.innerHTML = "";
+  $emailError.innerHTML = "";
+  $messageError.innerHTML = "";
+
+  // Verification
+  if ($fnameInput.value.length < 2) {
+    $fnameError.innerHTML = "Votre prénom doit comporter 2 caractères ou plus.";
+  } else if ($lnameInput.value.length < 2) {
+    $lnameError.innerHTML = "Votre nom doit comporter 2 caractères ou plus.";
+  } else if (
+    !$emailInput.value.match(
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )
+  ) {
+    $emailError.innerHTML = "Veuillez entrer une adresse email valide.";
+  } else if ($messageInput.value.length < 10) {
+    $messageError.innerHTML =
+      "Votre message doit comporter 10 caractères ou plus.";
+  } else {
+    console.log($fnameInput.value);
+    console.log($lnameInput.value);
+    console.log($emailInput.value);
+    console.log($messageInput.value);
+    $modalBg.classList.add("hide");
+  }
+}
