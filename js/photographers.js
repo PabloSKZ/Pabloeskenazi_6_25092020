@@ -42,6 +42,19 @@ function renderPictures(picturesSorted, selectedTag = "") {
   });
 }
 
+function filterPictures(picturesSorted, selectedTag = "") {
+  let pictureFiltered = [];
+  for (let j in picturesSorted) {
+    if (
+      picturesSorted[j].image != undefined &&
+      (picturesSorted[j].tags.includes(selectedTag) || selectedTag == "")
+    ) {
+      pictureFiltered.push(picturesSorted[j]);
+    }
+  }
+  return pictureFiltered;
+}
+
 function lightbox(picturesSorted, selectedTag = "", clickedPicture) {
   clickedPicture = clickedPicture.substring(1);
   let pictureToShow = data.media.find((x) => x.id == clickedPicture);
@@ -51,19 +64,20 @@ function lightbox(picturesSorted, selectedTag = "", clickedPicture) {
   );
   $lightboxPicture.setAttribute("id", `${pictureToShow.id}`);
   $lightboxBg.classList.remove("hide");
-  console.log(picturesSorted, selectedTag, clickedPicture);
 }
 
 function lightboxNext(picturesSorted, selectedTag = "") {
+  let picturesFiltered = filterPictures(picturesSorted, selectedTag);
+  console.log(picturesFiltered);
   let nextPictureIndex =
-    picturesSorted.indexOf(
-      picturesSorted.find((x) => x.id == $lightboxPicture.id)
+    picturesFiltered.indexOf(
+      picturesFiltered.find((x) => x.id == $lightboxPicture.id)
     ) + 1;
-  if (picturesSorted[nextPictureIndex].image != undefined) {
+  if (picturesFiltered[nextPictureIndex].image != undefined) {
     lightbox(
-      picturesSorted,
+      picturesFiltered,
       selectedTag,
-      `p${picturesSorted[nextPictureIndex].id}`
+      `p${picturesFiltered[nextPictureIndex].id}`
     );
   } else {
     nextPictureIndex++;
@@ -262,7 +276,7 @@ $closeLightbox.addEventListener("click", (e) => {
 
 $lightboxNext.addEventListener("click", (e) => {
   e.preventDefault();
-  lightboxNext(picturesSorted);
+  lightboxNext(picturesSorted, selectedTag);
 });
 
 /* Render Photographer Profile */
@@ -308,7 +322,8 @@ Array.from($tagCollection).forEach((el) => {
     e.preventDefault();
     if (el.classList.contains("active-tag")) {
       el.classList.remove("active-tag");
-      renderPictures(picturesSorted, "");
+      selectedTag = "";
+      renderPictures(picturesSorted, selectedTag);
     } else {
       Array.from($tagCollection).forEach((elem) => {
         elem.classList.remove("active-tag");
