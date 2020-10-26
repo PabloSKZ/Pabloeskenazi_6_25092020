@@ -164,27 +164,23 @@ function sortPictures(pictures, sortValue) {
         .reverse();
     case "title":
       return pictures.sort(function (a, b) {
-        if (a.image != undefined && b.image != undefined) {
-          let titleA = a.image.toUpperCase();
-          let titleB = b.image.toUpperCase();
-          if (titleA < titleB) {
-            return -1;
-          }
-          if (titleA > titleB) {
-            return 1;
-          }
-          return 0;
-        } else if (a.video != undefined && b.video != undefined) {
-          let titleA = a.video.toUpperCase();
-          let titleB = b.video.toUpperCase();
-          if (titleA < titleB) {
-            return -1;
-          }
-          if (titleA > titleB) {
-            return 1;
-          }
-          return 0;
+        if (a.image != undefined) {
+          var titleA = a.image.toUpperCase();
+        } else if (a.video != undefined) {
+          var titleA = a.video.toUpperCase();
         }
+        if (b.image != undefined) {
+          var titleB = b.image.toUpperCase();
+        } else if (b.video != undefined) {
+          var titleB = b.video.toUpperCase();
+        }
+        if (titleA < titleB) {
+          return -1;
+        }
+        if (titleA > titleB) {
+          return 1;
+        }
+        return 0;
       });
     default:
       return pictures.sort((a, b) => a.likes - b.likes).reverse();
