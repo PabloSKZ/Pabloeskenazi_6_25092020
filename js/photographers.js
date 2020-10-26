@@ -71,6 +71,25 @@ function renderPictures(picturesSorted, selectedTag = "") {
       lightbox(picturesSorted, selectedTag, el.id);
     });
   });
+
+  /* Like Event Listener */
+  Array.from($likeButtons).forEach((el) => {
+    let image = {
+      id: el.id,
+      liked: false,
+    };
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (!image.liked) {
+        data.media.find((x) => x.id == image.id).likes++;
+        image.liked = true;
+        el.previousElementSibling.innerHTML = data.media.find(
+          (x) => x.id == image.id
+        ).likes;
+        renderTotalLikes(pictures);
+      }
+    });
+  });
 }
 
 function filterPictures(picturesSorted, selectedTag = "") {
@@ -394,25 +413,6 @@ $price.innerHTML = photographer.price;
 renderTotalLikes(pictures);
 
 renderPictures(picturesSorted, selectedTag);
-
-/* Event Listeners on like buttons */
-Array.from($likeButtons).forEach((el) => {
-  let image = {
-    id: el.id,
-    liked: false,
-  };
-  el.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (!image.liked) {
-      data.media.find((x) => x.id == image.id).likes++;
-      image.liked = true;
-      el.previousElementSibling.innerHTML = data.media.find(
-        (x) => x.id == image.id
-      ).likes;
-      renderTotalLikes(pictures);
-    }
-  });
-});
 
 /* Event Listeners on tags */
 Array.from($tagCollection).forEach((el) => {
