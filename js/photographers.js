@@ -89,7 +89,6 @@ function lightboxNext(picturesSorted, selectedTag = "") {
 }
 
 function lightboxPrevious(picturesSorted, selectedTag = "") {
-  console.log("ok");
   let picturesFiltered = filterPictures(picturesSorted, selectedTag);
   let previousPictureIndex =
     picturesFiltered.indexOf(
