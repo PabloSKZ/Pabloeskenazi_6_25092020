@@ -40,6 +40,7 @@
   width: 80%;
   margin: 2rem auto 0 auto;
   position: relative;
+  z-index: 9;
 }
 
 .dropdown button {
@@ -205,7 +206,8 @@ label {
   margin-left: -4rem;
 }
 
-.lightbox img {
+.lightbox img,
+.lightbox video {
   max-width: 100%;
   max-height: 50vh;
 }

@@ -29,6 +29,32 @@ function renderPictures(picturesSorted, selectedTag = "") {
         </div>
       </div>
       `;
+    } else if (
+      picturesSorted[j].video != undefined &&
+      (picturesSorted[j].tags.includes(selectedTag) || selectedTag == "")
+    ) {
+      pictureName = splitFileName(picturesSorted[j].video);
+      galleryHTML += `
+      <div class="pic">
+        <video
+          src="../../assets/${photographer.name.split(" ")[0]}/${
+        picturesSorted[j].video
+      }"
+          alt="Portrait AfternoonBreak"
+          class="pic__img"
+          id="p${picturesSorted[j].id}"
+        >
+        </video>
+        <div class="pic__text">
+          <p class="pic__title">${pictureName}</p>
+          <p class="pic__price">${picturesSorted[j].price} €</p>
+          <p class="pic__likes"><span>${picturesSorted[j].likes}</span> 
+          <a href="#" id="${
+            picturesSorted[j].id
+          }" class="like-button"><i class="fas fa-heart"></i></a></p>
+        </div>
+      </div>
+      `;
     }
   }
   $gallery.innerHTML = galleryHTML;
@@ -46,7 +72,8 @@ function filterPictures(picturesSorted, selectedTag = "") {
   let pictureFiltered = [];
   for (let j in picturesSorted) {
     if (
-      picturesSorted[j].image != undefined &&
+      (picturesSorted[j].image != undefined ||
+        picturesSorted[j].video != undefined) &&
       (picturesSorted[j].tags.includes(selectedTag) || selectedTag == "")
     ) {
       pictureFiltered.push(picturesSorted[j]);
@@ -58,10 +85,21 @@ function filterPictures(picturesSorted, selectedTag = "") {
 function lightbox(picturesSorted, selectedTag = "", clickedPicture) {
   clickedPicture = clickedPicture.substring(1);
   let pictureToShow = data.media.find((x) => x.id == clickedPicture);
-  $lightboxPicture.setAttribute(
-    "src",
-    `../assets/${photographer.name.split(" ")[0]}/${pictureToShow.image}`
-  );
+  if (pictureToShow.image != undefined) {
+    $lightboxVideo.classList.add("hide");
+    $lightboxPicture.classList.remove("hide");
+    $lightboxPicture.setAttribute(
+      "src",
+      `../assets/${photographer.name.split(" ")[0]}/${pictureToShow.image}`
+    );
+  } else if (pictureToShow.video != undefined) {
+    $lightboxPicture.classList.add("hide");
+    $lightboxVideo.classList.remove("hide");
+    $lightboxVideo.setAttribute(
+      "src",
+      `../assets/${photographer.name.split(" ")[0]}/${pictureToShow.video}`
+    );
+  }
   $lightboxPicture.setAttribute("id", `${pictureToShow.id}`);
   $lightboxBg.classList.remove("hide");
 }
@@ -72,18 +110,21 @@ function lightboxNext(picturesSorted, selectedTag = "") {
     picturesFiltered.indexOf(
       picturesFiltered.find((x) => x.id == $lightboxPicture.id)
     ) + 1;
-  if (picturesFiltered[nextPictureIndex].image != undefined) {
+  if (
+    picturesFiltered[nextPictureIndex].image != undefined ||
+    picturesFiltered[nextPictureIndex].video != undefined
+  ) {
     lightbox(
       picturesFiltered,
       selectedTag,
       `p${picturesFiltered[nextPictureIndex].id}`
     );
   } else {
-    nextPictureIndex++;
+    nextPictureIndex = 0;
     lightbox(
-      picturesSorted,
+      picturesFiltered,
       selectedTag,
-      `p${picturesSorted[nextPictureIndex].id}`
+      `p${picturesFiltered[nextPictureIndex].id}`
     );
   }
 }
@@ -94,16 +135,19 @@ function lightboxPrevious(picturesSorted, selectedTag = "") {
     picturesFiltered.indexOf(
       picturesFiltered.find((x) => x.id == $lightboxPicture.id)
     ) - 1;
-  if (picturesFiltered[previousPictureIndex].image != undefined) {
+  if (
+    picturesFiltered[previousPictureIndex].image != undefined ||
+    picturesFiltered[previousPictureIndex].video != undefined
+  ) {
     lightbox(
       picturesFiltered,
       selectedTag,
       `p${picturesFiltered[previousPictureIndex].id}`
     );
   } else {
-    previousPictureIndex--;
+    previousPictureIndex = 0;
     lightbox(
-      picturesSorted,
+      picturesFiltered,
       selectedTag,
       `p${picturesSorted[previousPictureIndex].id}`
     );
@@ -123,6 +167,16 @@ function sortPictures(pictures, sortValue) {
         if (a.image != undefined && b.image != undefined) {
           let titleA = a.image.toUpperCase();
           let titleB = b.image.toUpperCase();
+          if (titleA < titleB) {
+            return -1;
+          }
+          if (titleA > titleB) {
+            return 1;
+          }
+          return 0;
+        } else if (a.video != undefined && b.video != undefined) {
+          let titleA = a.video.toUpperCase();
+          let titleB = b.video.toUpperCase();
           if (titleA < titleB) {
             return -1;
           }
@@ -223,6 +277,7 @@ const $submit = document.getElementById("submit");
 const $lightboxBg = document.getElementById("lightbox-bg");
 const $closeLightbox = document.getElementById("close-lightbox");
 const $lightboxPicture = document.getElementById("lightbox-picture");
+const $lightboxVideo = document.getElementById("lightbox-video");
 const $lightboxNext = document.getElementById("lightbox-next");
 const $lightboxPrevious = document.getElementById("lightbox-previous");
 
