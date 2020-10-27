@@ -1,5 +1,52 @@
 import data from "../data/data.js";
 
+function sortPictures(pictures, sortValue) {
+  switch (sortValue) {
+    case "popularity":
+      return pictures.sort((a, b) => a.likes - b.likes).reverse();
+    case "date":
+      return pictures
+        .sort((a, b) => convertDate(a.date) - convertDate(b.date))
+        .reverse();
+    case "title":
+      return pictures.sort(function (a, b) {
+        if (a.image != undefined) {
+          var titleA = a.image.toUpperCase();
+        } else if (a.video != undefined) {
+          var titleA = a.video.toUpperCase();
+        }
+        if (b.image != undefined) {
+          var titleB = b.image.toUpperCase();
+        } else if (b.video != undefined) {
+          var titleB = b.video.toUpperCase();
+        }
+        if (titleA < titleB) {
+          return -1;
+        }
+        if (titleA > titleB) {
+          return 1;
+        }
+        return 0;
+      });
+    default:
+      return pictures.sort((a, b) => a.likes - b.likes).reverse();
+  }
+}
+
+function filterPictures(picturesSorted, selectedTag = "") {
+  let pictureFiltered = [];
+  for (let j in picturesSorted) {
+    if (
+      (picturesSorted[j].image != undefined ||
+        picturesSorted[j].video != undefined) &&
+      (picturesSorted[j].tags.includes(selectedTag) || selectedTag == "")
+    ) {
+      pictureFiltered.push(picturesSorted[j]);
+    }
+  }
+  return pictureFiltered;
+}
+
 function renderPictures(picturesSorted, selectedTag = "") {
   picturesSorted = sortPictures(pictures, sortValue);
   galleryHTML = "";
@@ -92,20 +139,6 @@ function renderPictures(picturesSorted, selectedTag = "") {
   });
 }
 
-function filterPictures(picturesSorted, selectedTag = "") {
-  let pictureFiltered = [];
-  for (let j in picturesSorted) {
-    if (
-      (picturesSorted[j].image != undefined ||
-        picturesSorted[j].video != undefined) &&
-      (picturesSorted[j].tags.includes(selectedTag) || selectedTag == "")
-    ) {
-      pictureFiltered.push(picturesSorted[j]);
-    }
-  }
-  return pictureFiltered;
-}
-
 function lightbox(picturesSorted, selectedTag = "", clickedPicture) {
   clickedPicture = clickedPicture.substring(1);
   let pictureToShow = data.media.find((x) => x.id == clickedPicture);
@@ -178,39 +211,6 @@ function lightboxPrevious(picturesSorted, selectedTag = "") {
   }
 }
 
-function sortPictures(pictures, sortValue) {
-  switch (sortValue) {
-    case "popularity":
-      return pictures.sort((a, b) => a.likes - b.likes).reverse();
-    case "date":
-      return pictures
-        .sort((a, b) => convertDate(a.date) - convertDate(b.date))
-        .reverse();
-    case "title":
-      return pictures.sort(function (a, b) {
-        if (a.image != undefined) {
-          var titleA = a.image.toUpperCase();
-        } else if (a.video != undefined) {
-          var titleA = a.video.toUpperCase();
-        }
-        if (b.image != undefined) {
-          var titleB = b.image.toUpperCase();
-        } else if (b.video != undefined) {
-          var titleB = b.video.toUpperCase();
-        }
-        if (titleA < titleB) {
-          return -1;
-        }
-        if (titleA > titleB) {
-          return 1;
-        }
-        return 0;
-      });
-    default:
-      return pictures.sort((a, b) => a.likes - b.likes).reverse();
-  }
-}
-
 function convertDate(date) {
   return parseInt(date.split("-").join());
 }
@@ -267,6 +267,36 @@ function renderTotalLikes(pictures) {
   }
   $totalLikes.innerHTML = total;
   return total;
+}
+
+function validateForm() {
+  // Error field init
+  $fnameError.innerHTML = "";
+  $lnameError.innerHTML = "";
+  $emailError.innerHTML = "";
+  $messageError.innerHTML = "";
+
+  // Verification
+  if ($fnameInput.value.length < 2) {
+    $fnameError.innerHTML = "Votre prénom doit comporter 2 caractères ou plus.";
+  } else if ($lnameInput.value.length < 2) {
+    $lnameError.innerHTML = "Votre nom doit comporter 2 caractères ou plus.";
+  } else if (
+    !$emailInput.value.match(
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )
+  ) {
+    $emailError.innerHTML = "Veuillez entrer une adresse email valide.";
+  } else if ($messageInput.value.length < 10) {
+    $messageError.innerHTML =
+      "Votre message doit comporter 10 caractères ou plus.";
+  } else {
+    console.log($fnameInput.value);
+    console.log($lnameInput.value);
+    console.log($emailInput.value);
+    console.log($messageInput.value);
+    $modalBg.classList.add("hide");
+  }
 }
 
 /* DOM Variables */
@@ -330,6 +360,7 @@ const pictures = data.media.filter((x) => x.photographerId == id);
 /* Initialization */
 let tagsHTML = "";
 let galleryHTML = "";
+
 let pictureName = "";
 let sortValue = "popularity";
 let picturesSorted = sortPictures(pictures, sortValue);
@@ -432,33 +463,3 @@ Array.from($tagCollection).forEach((el) => {
     }
   });
 });
-
-function validateForm() {
-  // Error field init
-  $fnameError.innerHTML = "";
-  $lnameError.innerHTML = "";
-  $emailError.innerHTML = "";
-  $messageError.innerHTML = "";
-
-  // Verification
-  if ($fnameInput.value.length < 2) {
-    $fnameError.innerHTML = "Votre prénom doit comporter 2 caractères ou plus.";
-  } else if ($lnameInput.value.length < 2) {
-    $lnameError.innerHTML = "Votre nom doit comporter 2 caractères ou plus.";
-  } else if (
-    !$emailInput.value.match(
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    )
-  ) {
-    $emailError.innerHTML = "Veuillez entrer une adresse email valide.";
-  } else if ($messageInput.value.length < 10) {
-    $messageError.innerHTML =
-      "Votre message doit comporter 10 caractères ou plus.";
-  } else {
-    console.log($fnameInput.value);
-    console.log($lnameInput.value);
-    console.log($emailInput.value);
-    console.log($messageInput.value);
-    $modalBg.classList.add("hide");
-  }
-}

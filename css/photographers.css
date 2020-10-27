@@ -211,3 +211,81 @@ label {
   max-width: 100%;
   max-height: 50vh;
 }
+
+@media only screen and (max-width: 1000px) {
+  header {
+    height: 5rem;
+    margin-top: 1rem;
+  }
+  .likes-price {
+    display: none;
+  }
+  #contact {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 100;
+    margin-left: 0;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.2rem;
+  }
+  .profile {
+    background: white;
+  }
+  .dropdown {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .profile {
+    margin: auto;
+    padding: 0;
+    width: 70%;
+  }
+  .pic__img,
+  .pic__video,
+  .pic__text {
+    width: 100%;
+  }
+  .pp {
+    height: 8rem;
+    width: 8rem;
+    transform: translate(-7rem, 0);
+  }
+  .lightbox {
+    width: 80%;
+  }
+  .lightbox img,
+  .lightbox video {
+    max-width: 100%;
+    max-height: 80vh;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .profile {
+    margin-left: 1rem;
+    padding: 0;
+    width: 70%;
+  }
+  .pp {
+    height: 7rem;
+    width: 7rem;
+    transform: translate(-8rem, 0.8rem);
+  }
+  .tags {
+    transform: translate(-0.8rem, 0);
+    width: 90%;
+  }
+  .galery {
+    margin-top: 1rem;
+  }
+  .pic {
+    margin: 0.7rem auto;
+  }
+  .lightbox {
+    width: 70%;
+  }
+}
