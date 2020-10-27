@@ -286,6 +286,18 @@ label {
     margin: 0.7rem auto;
   }
   .lightbox {
-    width: 70%;
+    width: 100%;
+    transform: translate(-2rem, 0);
+  }
+  .lightbox img,
+  .lightbox video {
+    width: 80%;
+  }
+  .lightbox .material-icons,
+  .lightbox .close-lightbox {
+    font-size: 2rem;
+  }
+  .lightbox .close-lightbox {
+    transform: translate(2.5rem, -3rem);
   }
 }

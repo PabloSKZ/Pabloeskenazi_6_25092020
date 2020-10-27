@@ -301,6 +301,21 @@ label {
   }
 
   .lightbox {
-    width: 70%;
+    width: 100%;
+    transform: translate(-2rem, 0);
+
+    img,
+    video {
+      width: 80%;
+    }
+
+    & .material-icons,
+    & .close-lightbox {
+      font-size: 2rem;
+    }
+
+    & .close-lightbox {
+      transform: translate(2.5rem, -3rem);
+    }
   }
 }
