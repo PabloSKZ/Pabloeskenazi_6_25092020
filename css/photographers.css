@@ -36,9 +36,22 @@
   width: 12rem;
 }
 
+.order-by {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  margin: 2rem auto 0 auto;
+  width: 80%;
+}
+
+.order-by p {
+  font-weight: bold;
+  margin-right: 2rem;
+  font-size: 1.1rem;
+}
+
 .dropdown {
   width: 80%;
-  margin: 2rem auto 0 auto;
   position: relative;
   z-index: 9;
 }
@@ -233,7 +246,7 @@ label {
   .profile {
     background: white;
   }
-  .dropdown {
+  .order-by {
     display: none;
   }
 }
