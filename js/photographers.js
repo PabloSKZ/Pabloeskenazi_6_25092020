@@ -161,6 +161,7 @@ function lightbox(clickedPicture) {
       `../assets/${photographer.name.split(" ")[0]}/${pictureToShow.image}`
     );
     $lightboxPicture.setAttribute("alt", `${pictureName}`);
+    $lightboxTitle.innerHTML = `${pictureName}`;
   } else if (pictureToShow.video != undefined) {
     pictureName = splitFileName(pictureToShow.video);
     $lightboxPicture.classList.add("hide");
@@ -170,23 +171,10 @@ function lightbox(clickedPicture) {
       `../assets/${photographer.name.split(" ")[0]}/${pictureToShow.video}`
     );
     $lightboxVideo.setAttribute("alt", `${pictureName}`);
+    $lightboxTitle.innerHTML = `${pictureName}`;
   }
   $lightboxPicture.setAttribute("id", `${pictureToShow.id}`);
   $lightboxBg.classList.remove("hide");
-
-  document.addEventListener(
-    "keydown",
-    (e) => {
-      if (e.key == "ArrowRight") {
-        lightboxNext(picturesSorted, selectedTag);
-      } else if (e.key == "ArrowLeft") {
-        lightboxPrevious(picturesSorted, selectedTag);
-      } else if (e.key == "Escape") {
-        $lightboxBg.classList.add("hide");
-      }
-    },
-    { once: true }
-  );
 }
 
 function lightboxNext(picturesSorted, selectedTag = "") {
@@ -357,6 +345,7 @@ const $lightboxPicture = document.getElementById("lightbox-picture");
 const $lightboxVideo = document.getElementById("lightbox-video");
 const $lightboxNext = document.getElementById("lightbox-next");
 const $lightboxPrevious = document.getElementById("lightbox-previous");
+const $lightboxTitle = document.getElementById("lightbox-title");
 
 const $dropdownButton = document.getElementById("dropdown-button");
 const $dropdownSelected = document.getElementById("dropdown-selected");
@@ -452,6 +441,18 @@ $lightboxNext.addEventListener("click", (e) => {
 $lightboxPrevious.addEventListener("click", (e) => {
   e.preventDefault();
   lightboxPrevious(picturesSorted, selectedTag);
+});
+
+document.addEventListener("keydown", (e) => {
+  if (!$lightboxBg.classList.contains("hide")) {
+    if (e.key == "ArrowRight") {
+      lightboxNext(picturesSorted, selectedTag);
+    } else if (e.key == "ArrowLeft") {
+      lightboxPrevious(picturesSorted, selectedTag);
+    } else if (e.key == "Escape") {
+      $lightboxBg.classList.add("hide");
+    }
+  }
 });
 
 /* Render Photographer Profile */

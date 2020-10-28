@@ -45,8 +45,7 @@
 }
 
 .order-by p {
-  font-weight: bold;
-  margin-right: 2rem;
+  margin-right: 1.5rem;
   font-size: 1.1rem;
 }
 
@@ -199,6 +198,11 @@ label {
   margin-left: 0.2rem;
 }
 
+.lightbox-bg {
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 .lightbox {
   width: 50%;
   display: flex;
@@ -223,6 +227,14 @@ label {
 .lightbox video {
   max-width: 100%;
   max-height: 50vh;
+}
+
+.lightbox-title {
+  color: #901c1c;
+  font-size: 2rem;
+  align-self: flex-start;
+  margin: 0 0 0 50%;
+  transform: translate(-50%, 0);
 }
 
 @media only screen and (max-width: 1000px) {
