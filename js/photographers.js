@@ -337,6 +337,7 @@ const $emailError = document.getElementById("email-error");
 const $messageError = document.getElementById("message-error");
 const $submit = document.getElementById("submit");
 
+const $lightbox = document.getElementById("lightbox");
 const $lightboxBg = document.getElementById("lightbox-bg");
 const $closeLightbox = document.getElementById("close-lightbox");
 const $lightboxPicture = document.getElementById("lightbox-picture");
@@ -374,6 +375,7 @@ const pictures = data.media.filter((x) => x.photographerId == id);
 /* Initialization */
 let tagsHTML = "";
 let galleryHTML = "";
+let clickOnLightbox = false;
 
 let pictureName = "";
 let sortValue = "popularity";
@@ -439,6 +441,23 @@ $lightboxNext.addEventListener("click", (e) => {
 $lightboxPrevious.addEventListener("click", (e) => {
   e.preventDefault();
   lightboxPrevious(picturesSorted, selectedTag);
+});
+
+document.addEventListener("click", (e) => {
+  e.preventDefault();
+  clickOnLightbox = false;
+});
+
+$lightbox.addEventListener("click", (e) => {
+  e.preventDefault();
+  clickOnLightbox = true;
+});
+
+$lightboxBg.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (!clickOnLightbox) {
+    $lightboxBg.classList.add("hide");
+  }
 });
 
 document.addEventListener("keydown", (e) => {
