@@ -192,7 +192,6 @@ function lightboxNext(picturesSorted, selectedTag = "") {
       ) + 1;
   }
   if (
-    // ?? useless ??
     picturesFiltered[nextPictureIndex].image == undefined &&
     picturesFiltered[nextPictureIndex].video == undefined
   ) {
@@ -216,7 +215,6 @@ function lightboxPrevious(picturesSorted, selectedTag = "") {
       ) - 1;
   }
   if (
-    // ?? useless ??
     picturesFiltered[previousPictureIndex].image == undefined &&
     picturesFiltered[previousPictureIndex].video == undefined
   ) {
@@ -492,3 +490,19 @@ Array.from($tagCollection).forEach((el) => {
     }
   });
 });
+
+// ! To output new media alt : decomment following block
+
+/* const mediaWithAlt = createAlt(data.media);
+console.log(JSON.stringify(mediaWithAlt));
+
+function createAlt(media) {
+  for (let i in media) {
+    if (media[i].image != undefined) {
+      media[i].alt = splitFileName(media[i].image);
+    } else if (media[i].video != undefined) {
+      media[i].alt = splitFileName(media[i].video);
+    }
+  }
+  return media;
+} */
