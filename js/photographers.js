@@ -63,9 +63,9 @@ function renderPictures(picturesSorted, selectedTag = "") {
         }" aria-label="${pictureName}, closeup view"
         class="pic__link">
           <img
-            src="../../assets/${photographer.name.split(" ")[0]}/${
-        picturesSorted[j].image
-      }"
+            src="https://assets-github-pabloskz.s3.eu-west-3.amazonaws.com/${
+              photographer.name.split(" ")[0]
+            }/${picturesSorted[j].image}"
             alt="${pictureName}"
             class="pic__img"
           />
@@ -92,9 +92,9 @@ function renderPictures(picturesSorted, selectedTag = "") {
         }" aria-label="${pictureName}, closeup view"
         class="pic__link">
           <video
-            src="../../assets/${photographer.name.split(" ")[0]}/${
-        picturesSorted[j].video
-      }"
+            src="https://assets-github-pabloskz.s3.eu-west-3.amazonaws.com/${
+              photographer.name.split(" ")[0]
+            }/${picturesSorted[j].video}"
             alt="${pictureName}"
             class="pic__img"
             id="p${picturesSorted[j].id}"
@@ -158,7 +158,9 @@ function lightbox(clickedPicture) {
     $lightboxPicture.classList.remove("hide");
     $lightboxPicture.setAttribute(
       "src",
-      `../assets/${photographer.name.split(" ")[0]}/${pictureToShow.image}`
+      `https://assets-github-pabloskz.s3.eu-west-3.amazonaws.com/${
+        photographer.name.split(" ")[0]
+      }/${pictureToShow.image}`
     );
     $lightboxPicture.setAttribute("alt", `${pictureName}`);
     $lightboxTitle.innerHTML = `${pictureName}`;
@@ -168,7 +170,9 @@ function lightbox(clickedPicture) {
     $lightboxVideo.classList.remove("hide");
     $lightboxVideo.setAttribute(
       "src",
-      `../assets/${photographer.name.split(" ")[0]}/${pictureToShow.video}`
+      `https://assets-github-pabloskz.s3.eu-west-3.amazonaws.com/${
+        photographer.name.split(" ")[0]
+      }/${pictureToShow.video}`
     );
     $lightboxVideo.setAttribute("alt", `${pictureName}`);
     $lightboxTitle.innerHTML = `${pictureName}`;
@@ -478,7 +482,7 @@ $location.innerHTML = `${photographer.city}, ${photographer.country}`;
 $copyline.innerHTML = photographer.tagline;
 $pp.setAttribute(
   "src",
-  `../assets/Photographers_ID_Photos/${photographer.portrait}`
+  `https://assets-github-pabloskz.s3.eu-west-3.amazonaws.com/Photographers_ID_Photos/${photographer.portrait}`
 );
 $pp.setAttribute("alt", `${photographer.name}`);
 for (let i in photographer.tags) {
